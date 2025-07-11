@@ -10,29 +10,29 @@ public class ReaderCSV {
     private final ArrayList<String> wordsList;
     private final ArrayList<String> DefList;
 
-
+    // Constructor of the class
     public ReaderCSV() {
         DefList = new ArrayList<>();
         wordsList = new ArrayList<>();
     }
 
+    // Extract the words from "words.csv" to put them in the ArrayList "wordsList"
     public void extractWords() {
-        String csvFile = "words.csv"; // Specify the path to your CSV file
+        String csvFile = "words.csv";
         String line;
-        String csvSplitBy = ","; // Change this if your CSV uses a different delimiter
+        // Delimiter between words in the csv file
+        String csvSplitBy = "\n";
 
         try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
 
             while ((line = br.readLine()) != null) {
-                // Use comma as separator
                 String[] values = line.split(csvSplitBy);
-                // Process the values as needed
-
+                // Process the values
                 for (String value : values) {
-                    System.out.print(value + " ");
+                    // System.out.print(value + " ");
                     wordsList.add(value);
                 }
-                System.out.println();
+                // System.out.println();
 
             }
 
@@ -41,23 +41,23 @@ public class ReaderCSV {
         }
     }
 
+    // Extract the definitions from "def.csv" to put them in the ArrayList "DefList"
     public void extractDefs() {
-        String csvFile = "def.csv"; // Specify the path to your CSV file
+        String csvFile = "def.csv";
         String line;
-        String csvSplitBy = "\n"; // Change this if your CSV uses a different delimiter
+        // Delimiter between definitions in the csv file
+        String csvSplitBy = "\n";
 
         try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
 
             while ((line = br.readLine()) != null) {
-                // Use comma as separator
                 String[] values = line.split(csvSplitBy);
-                // Process the values as needed
-
+                // Process the values
                 for (String value : values) {
-                    System.out.print(value + " ");
+                    // System.out.print(value + " ");
                     DefList.add(value);
                 }
-                System.out.println();
+                // System.out.println();
 
             }
 
@@ -66,6 +66,8 @@ public class ReaderCSV {
         }
     }
 
+    // If there is only a list of words, translate the words using an API
+    // Note: this could be a future feature, but I don't have an API key yet
     public void translateWords() {
         for (int x = 0; x < this.getNbrWords(); x++) {
             System.out.println(this.getWordAt(x));
@@ -78,6 +80,7 @@ public class ReaderCSV {
         }
     }
 
+    // Getters
     public ArrayList<String> getWordsList() {
         return wordsList;
     }
