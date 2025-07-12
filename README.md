@@ -1,4 +1,4 @@
-# Traductor Browser Extension
+# Traductor Java
 
 ## Description
 This is a Java program that takes two CSV files (one with words and the other with the definitions of the words) and shows each word separately with a button to show/hide the definition. When you're finished studying the word, you can click on the "next" button to study the next word in the list.
