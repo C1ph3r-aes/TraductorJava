@@ -1,5 +1,6 @@
 package csv.gui;
 
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -8,12 +9,15 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-public record HeaderUI(Node rootNode) {
+public record HeaderUI(Node rootNode, SimpleBooleanProperty showStudyScene, SimpleBooleanProperty showSettingsScene) {
 
     private static final int TITLE_SIZE = 40;
     private static final int PARAGRAPH_SIZE = 20;
 
-    public static HeaderUI create(Stage currentStage, BorderPane currentBP, Node studyLayout, Node settingsLayout) {
+    public static HeaderUI create(Stage currentStage) {
+
+        SimpleBooleanProperty showStudyScene = new SimpleBooleanProperty();
+        SimpleBooleanProperty showSettingsScene = new SimpleBooleanProperty();
 
         // Create the title's label
         Label labelTitle = new Label("Quizvoc");
@@ -38,14 +42,13 @@ public record HeaderUI(Node rootNode) {
 
         // Add the functions to change the center of the GUI
         buttonStudyScene.setOnAction(event -> {
-            System.out.println("Reset of study Layout");
-            // currentBP.setCent();
+            showStudyScene.setValue(true);
         });
 
         buttonSettingsScene.setOnAction(event -> {
-            currentBP.setCenter(settingsLayout);
+            showSettingsScene.setValue(true);
         });
 
-        return new HeaderUI(hBox);
+        return new HeaderUI(hBox, showStudyScene, showSettingsScene);
     }
 }

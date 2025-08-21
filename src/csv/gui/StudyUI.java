@@ -1,6 +1,7 @@
 package csv.gui;
 
 import csv.ReaderCSV;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -16,7 +17,7 @@ public record StudyUI(Node rootNode) {
     private static final int TITLE_SIZE = 40;
     private static final int PARAGRAPH_SIZE = 20;
 
-    public static StudyUI create(ReaderCSV currentReaderCsv, AtomicInteger currentIndex, ArrayList<Integer> currentIntList) {
+    public static StudyUI create(ReaderCSV currentReaderCsv, AtomicInteger currentIndex, ArrayList<Integer> currentIntList, SimpleBooleanProperty resetUI) {
 
         // Create the elements of the Study Layout
         System.out.println("The word: " + currentReaderCsv.getWordAt(currentIntList.get(currentIndex.get())));
@@ -70,6 +71,19 @@ public record StudyUI(Node rootNode) {
 
         // Create the VBox that will contain all elements of the Study layout
         VBox vBox = new VBox(labelWord, labelDefinition, buttonNext, buttonShowDef);
+
+        // reset UI when boolean is true
+        resetUI.subscribe((Boolean bool) -> {
+            if(bool) {
+                // reset the text to default values
+                labelWord.setText("Word: " + currentReaderCsv.getWordAt(currentIntList.get(currentIndex.get())));
+                labelDefinition.setText("Definition: ");
+                buttonNext.setText("Next");
+                buttonShowDef.setText("Show definition");
+
+                resetUI.setValue(false);
+            }
+        });
 
         return new StudyUI(vBox);
     }

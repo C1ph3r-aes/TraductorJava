@@ -45,13 +45,30 @@ public class Main extends Application {
         primaryStage.show();
 
         // Create all the Layout of the different parts of the GUI
-        StudyUI stu = StudyUI.create(csvReader, index, intList);
-        SettingsUI set = SettingsUI.create(csvReader, index, intList, bp, stu);
-        HeaderUI h = HeaderUI.create(primaryStage, bp, stu.rootNode(), set.rootNode());
+        SettingsUI set = SettingsUI.create(csvReader, index, intList);
+        StudyUI stu = StudyUI.create(csvReader, index, intList, set.resetUI());
+        HeaderUI h = HeaderUI.create(primaryStage);
 
         // Set the top and the default center of the BorderPane
         bp.setTop(h.rootNode());
         bp.setCenter(stu.rootNode());
+
+        // handle the buttons to change the scenes
+        h.showStudyScene().subscribe((Boolean bool) -> {
+            if(bool) {
+                bp.setCenter(stu.rootNode());
+
+                h.showStudyScene().setValue(false);
+            }
+        });
+
+        h.showSettingsScene().subscribe((Boolean bool) -> {
+            if(bool) {
+                bp.setCenter(set.rootNode());
+
+                h.showSettingsScene().setValue(false);
+            }
+        });
     }
 
     public static void main(String[] args) {
