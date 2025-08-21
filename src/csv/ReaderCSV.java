@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class ReaderCSV {
 
@@ -78,6 +79,12 @@ public class ReaderCSV {
             // add it to the Def list
             this.DefList.add(translatedWord);
         }
+    }
+
+    // shuffle the words and definitions
+    public void shuffleWordsAndDefinitions(ArrayList<Integer> currentIntList) {
+        // shuffle the intList
+        Collections.shuffle(currentIntList);
     }
 
     // Getters
