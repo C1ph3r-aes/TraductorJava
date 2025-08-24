@@ -1,14 +1,13 @@
-///////////////////////////
+package csv; ///////////////////////////
 ///                     ///
 /// IMPORT LIBRARIES    ///
 ///                     ///
 ///////////////////////////
 
-import csv.ReaderCSV;
-import gui.HeaderUI;
-import gui.ListsUI;
-import gui.SettingsUI;
-import gui.StudyUI;
+import csv.gui.HeaderUI;
+import csv.gui.ListsUI;
+import csv.gui.SettingsUI;
+import csv.gui.StudyUI;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;

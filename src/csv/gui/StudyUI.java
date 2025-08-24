@@ -1,6 +1,6 @@
-package gui;
+package csv.gui;
 
-import Lists;
+import csv.Lists;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.scene.Node;
 import javafx.scene.control.Button;

@@ -15,7 +15,7 @@ This is a Java program that takes two CSV files (one with words and the other wi
 - Add settings
   - Add the choice to shuffle the list
 - Add a .jar and an .exe file so everyone can use this app without an IDE (+ remove requirement section)
-- Add a "Import Lists" section to imports different lists and choose one to study it
+- Add a "Import csv.Lists" section to imports different lists and choose one to study it
 - Add a menu on the Study UI to choose from different modes to study the vocabulary
   - Multiple choices
   - Writing

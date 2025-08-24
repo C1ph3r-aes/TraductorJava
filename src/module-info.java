@@ -7,6 +7,6 @@ module Traductor {
     requires javafx.web;
 
     exports csv;
-    exports gui;
+    exports csv.gui;
     exports;
 }

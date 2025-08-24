@@ -1,4 +1,4 @@
-import csv.ReaderCSV;
+package csv;
 
 import java.util.ArrayList;
 import java.util.Collections;

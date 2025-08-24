@@ -1,4 +1,4 @@
-package gui;
+package csv.gui;
 
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.scene.Node;
@@ -36,7 +36,7 @@ public record HeaderUI(Node rootNode, SimpleBooleanProperty showStudyScene, Simp
         buttonStudyScene.setFont(new Font(PARAGRAPH_SIZE));
         Button buttonSettingsScene = new Button("Settings");
         buttonSettingsScene.setFont(new Font(PARAGRAPH_SIZE));
-        Button buttonListsScene = new Button("Lists");
+        Button buttonListsScene = new Button("csv.Lists");
         buttonListsScene.setFont(new Font(PARAGRAPH_SIZE));
 
         // Create the HBox that will contain all elements of the Header layout

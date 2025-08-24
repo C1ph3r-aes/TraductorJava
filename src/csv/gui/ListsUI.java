@@ -1,4 +1,4 @@
-package gui;
+package csv.gui;
 
 import csv.ReaderCSV;
 import javafx.scene.Node;
