@@ -1,15 +1,14 @@
-package csv.gui;
+package gui;
 
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-public record HeaderUI(Node rootNode, SimpleBooleanProperty showStudyScene, SimpleBooleanProperty showSettingsScene) {
+public record HeaderUI(Node rootNode, SimpleBooleanProperty showStudyScene, SimpleBooleanProperty showSettingsScene, SimpleBooleanProperty showListsScene) {
 
     private static final int TITLE_SIZE = 40;
     private static final int PARAGRAPH_SIZE = 20;
@@ -18,6 +17,7 @@ public record HeaderUI(Node rootNode, SimpleBooleanProperty showStudyScene, Simp
 
         SimpleBooleanProperty showStudyScene = new SimpleBooleanProperty();
         SimpleBooleanProperty showSettingsScene = new SimpleBooleanProperty();
+        SimpleBooleanProperty showListsScene = new SimpleBooleanProperty();
 
         // Create the title's label
         Label labelTitle = new Label("Quizvoc");
@@ -36,9 +36,11 @@ public record HeaderUI(Node rootNode, SimpleBooleanProperty showStudyScene, Simp
         buttonStudyScene.setFont(new Font(PARAGRAPH_SIZE));
         Button buttonSettingsScene = new Button("Settings");
         buttonSettingsScene.setFont(new Font(PARAGRAPH_SIZE));
+        Button buttonListsScene = new Button("Lists");
+        buttonListsScene.setFont(new Font(PARAGRAPH_SIZE));
 
         // Create the HBox that will contain all elements of the Header layout
-        HBox hBox = new HBox(labelTitle, buttonExit, buttonStudyScene, buttonSettingsScene);
+        HBox hBox = new HBox(labelTitle, buttonExit, buttonStudyScene, buttonSettingsScene, buttonListsScene);
 
         // Add the functions to change the center of the GUI
         buttonStudyScene.setOnAction(event -> {
@@ -49,6 +51,10 @@ public record HeaderUI(Node rootNode, SimpleBooleanProperty showStudyScene, Simp
             showSettingsScene.setValue(true);
         });
 
-        return new HeaderUI(hBox, showStudyScene, showSettingsScene);
+        buttonListsScene.setOnAction(event -> {
+            showListsScene.setValue(true);
+        });
+
+        return new HeaderUI(hBox, showStudyScene, showSettingsScene, showListsScene);
     }
 }

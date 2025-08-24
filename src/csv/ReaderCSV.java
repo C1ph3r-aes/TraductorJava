@@ -5,106 +5,50 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 
 public class ReaderCSV {
 
-    private final ArrayList<String> wordsList;
-    private final ArrayList<String> DefList;
 
     // Constructor of the class
     public ReaderCSV() {
-        DefList = new ArrayList<>();
-        wordsList = new ArrayList<>();
     }
 
-    // Extract the words from "words.csv" to put them in the ArrayList "wordsList"
-    public void extractWords() {
-        String csvFile = "words.csv";
+    // Extract words and definitions from one CSV file
+    public HashMap<String, ArrayList<String>> extractWordsAndDefs(String csvFile) {
         String line;
-        // Delimiter between words in the csv file
-        String csvSplitBy = "\n";
+
+        // Create a HashMap to hold the dictionary
+        HashMap<String, ArrayList<String>> dictionary = new HashMap<>();
+
+        ArrayList<String> words = new ArrayList<>();
+        ArrayList<String> definitions = new ArrayList<>();
+
+        // addCsvPath(csvFile);
 
         try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
-
             while ((line = br.readLine()) != null) {
-                String[] values = line.split(csvSplitBy);
-                // Process the values
-                for (String value : values) {
-                    // System.out.print(value + " ");
-                    wordsList.add(value);
+                // Split the line by comma
+                String[] values = line.split(",");
+
+                // Check if the line has both a word and a definition
+                if (values.length == 2) {
+                    String word = values[0].trim(); // Get the word and trim whitespace
+                    String definition = values[1].trim(); // Get the definition and trim whitespace
+
+                    // Add to respective lists
+                    words.add(word);
+                    definitions.add(definition);
                 }
-                // System.out.println();
-
             }
-
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-    }
 
-    // Extract the definitions from "def.csv" to put them in the ArrayList "DefList"
-    public void extractDefs() {
-        String csvFile = "def.csv";
-        String line;
-        // Delimiter between definitions in the csv file
-        String csvSplitBy = "\n";
+        // Put the ArrayLists into the HashMap
+        dictionary.put("words", words);
+        dictionary.put("definitions", definitions);
 
-        try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
-
-            while ((line = br.readLine()) != null) {
-                String[] values = line.split(csvSplitBy);
-                // Process the values
-                for (String value : values) {
-                    // System.out.print(value + " ");
-                    DefList.add(value);
-                }
-                // System.out.println();
-
-            }
-
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-    // If there is only a list of words, translate the words using an API
-    // Note: this could be a future feature, but I don't have an API key yet
-    public void translateWords() {
-        for (int x = 0; x < this.getNbrWords(); x++) {
-            System.out.println(this.getWordAt(x));
-
-            // translate the word
-            String translatedWord = this.wordsList.get(x);
-
-            // add it to the Def list
-            this.DefList.add(translatedWord);
-        }
-    }
-
-    // shuffle the words and definitions
-    public void shuffleWordsAndDefinitions(ArrayList<Integer> currentIntList) {
-        // shuffle the intList
-        Collections.shuffle(currentIntList);
-    }
-
-    // Getters
-    public ArrayList<String> getWordsList() {
-        return wordsList;
-    }
-
-    public ArrayList<String> getDefList() {
-        return DefList;
-    }
-
-    public String getWordAt(int index) {
-        return wordsList.get(index);
-    }
-
-    public String getDefAt(int index) {
-        return DefList.get(index);
-    }
-
-    public int getNbrWords() {
-        return wordsList.size();
+        return dictionary;
     }
 }

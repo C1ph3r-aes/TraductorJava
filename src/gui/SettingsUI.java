@@ -1,11 +1,10 @@
-package csv.gui;
+package gui;
 
-import csv.ReaderCSV;
+import Lists;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
@@ -16,7 +15,7 @@ public record SettingsUI(Node rootNode, SimpleBooleanProperty resetUI) {
     private static final int TITLE_SIZE = 40;
     private static final int PARAGRAPH_SIZE = 20;
 
-    public static SettingsUI create(ReaderCSV currentCsvReader, AtomicInteger currentIndex, ArrayList<Integer> currentIntList) {
+    public static SettingsUI create(Lists classList, AtomicInteger currentIndex, ArrayList<Integer> currentIntList) {
 
         SimpleBooleanProperty resetUI = new SimpleBooleanProperty();
 
@@ -30,11 +29,11 @@ public record SettingsUI(Node rootNode, SimpleBooleanProperty resetUI) {
             // Apply changes and reset everything
             if(checkBoxShuffleList.isSelected()) {
                 // If checkBox selected, we shuffle the currentIntList
-                currentCsvReader.shuffleWordsAndDefinitions(currentIntList);
+                classList.shuffleWordsAndDefinitions(currentIntList);
             } else {
                 // reset currentIntList
                 currentIntList.clear();
-                for(int i = 0; i < currentCsvReader.getNbrWords(); i++) {
+                for(int i = 0; i < classList.getNbrWords(); i++) {
                     currentIntList.add(i);
                 }
             }
