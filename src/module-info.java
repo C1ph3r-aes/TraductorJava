@@ -8,5 +8,4 @@ module Traductor {
 
     exports csv;
     exports csv.gui;
-    exports;
 }

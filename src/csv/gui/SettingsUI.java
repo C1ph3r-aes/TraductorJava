@@ -1,6 +1,6 @@
 package csv.gui;
 
-import csv.Lists;
+import csv.List;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -15,7 +15,7 @@ public record SettingsUI(Node rootNode, SimpleBooleanProperty resetUI) {
     private static final int TITLE_SIZE = 40;
     private static final int PARAGRAPH_SIZE = 20;
 
-    public static SettingsUI create(Lists classList, AtomicInteger currentIndex, ArrayList<Integer> currentIntList) {
+    public static SettingsUI create(List classList, AtomicInteger currentIndex, ArrayList<Integer> currentIntList) {
 
         SimpleBooleanProperty resetUI = new SimpleBooleanProperty();
 

@@ -1,8 +1,4 @@
-package csv; ///////////////////////////
-///                     ///
-/// IMPORT LIBRARIES    ///
-///                     ///
-///////////////////////////
+package csv;
 
 import csv.gui.HeaderUI;
 import csv.gui.ListsUI;
@@ -26,7 +22,9 @@ public class Main extends Application {
 
         // Create the ReaderCSV object to extract the words and definitions from the CSV files
         ReaderCSV csvReader = new ReaderCSV();
-        Lists listClass = new Lists();
+        WriterCSV csvWriter = new WriterCSV();
+
+        List listClass = new List();
         listClass.getWordsAndDefinitions(csvReader);
 
         // Create an index to count up how many words we have studied to know when to finish the program
@@ -47,7 +45,7 @@ public class Main extends Application {
         SettingsUI set = SettingsUI.create(listClass, index, intList);
         StudyUI stu = StudyUI.create(listClass, index, intList, set.resetUI());
         HeaderUI h = HeaderUI.create(primaryStage);
-        ListsUI l = ListsUI.create(csvReader);
+        ListsUI l = ListsUI.create(csvReader, csvWriter, listClass);
 
         // Set the top and the default center of the BorderPane
         bp.setTop(h.rootNode());

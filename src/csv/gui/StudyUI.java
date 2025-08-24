@@ -1,6 +1,6 @@
 package csv.gui;
 
-import csv.Lists;
+import csv.List;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -17,7 +17,7 @@ public record StudyUI(Node rootNode) {
     private static final int TITLE_SIZE = 40;
     private static final int PARAGRAPH_SIZE = 20;
 
-    public static StudyUI create(Lists listClass, AtomicInteger currentIndex, ArrayList<Integer> currentIntList, SimpleBooleanProperty resetUI) {
+    public static StudyUI create(List listClass, AtomicInteger currentIndex, ArrayList<Integer> currentIntList, SimpleBooleanProperty resetUI) {
 
         // Create the elements of the Study Layout
         System.out.println("The word: " + listClass.getWordAt(currentIntList.get(currentIndex.get())));

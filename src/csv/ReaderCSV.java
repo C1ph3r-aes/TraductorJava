@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 
 public class ReaderCSV {
@@ -15,30 +14,29 @@ public class ReaderCSV {
     }
 
     // Extract words and definitions from one CSV file
-    public HashMap<String, ArrayList<String>> extractWordsAndDefs(String csvFile) {
+    public HashMap<String, ArrayList<String>> extractAllWithOneDelimiter(String csvFile, String delimiter) {
         String line;
 
         // Create a HashMap to hold the dictionary
         HashMap<String, ArrayList<String>> dictionary = new HashMap<>();
 
-        ArrayList<String> words = new ArrayList<>();
-        ArrayList<String> definitions = new ArrayList<>();
+        ArrayList<String> firstItems = new ArrayList<>();
+        ArrayList<String> secondItems = new ArrayList<>();
 
-        // addCsvPath(csvFile);
 
         try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
             while ((line = br.readLine()) != null) {
                 // Split the line by comma
-                String[] values = line.split(",");
+                String[] values = line.split(delimiter);
 
                 // Check if the line has both a word and a definition
                 if (values.length == 2) {
-                    String word = values[0].trim(); // Get the word and trim whitespace
-                    String definition = values[1].trim(); // Get the definition and trim whitespace
+                    String firstItem = values[0].trim(); // Get the word and trim whitespace
+                    String secondItem = values[1].trim(); // Get the definition and trim whitespace
 
                     // Add to respective lists
-                    words.add(word);
-                    definitions.add(definition);
+                    firstItems.add(firstItem);
+                    secondItems.add(secondItem);
                 }
             }
         } catch (IOException e) {
@@ -46,8 +44,8 @@ public class ReaderCSV {
         }
 
         // Put the ArrayLists into the HashMap
-        dictionary.put("words", words);
-        dictionary.put("definitions", definitions);
+        dictionary.put("first", firstItems);
+        dictionary.put("second", secondItems);
 
         return dictionary;
     }
