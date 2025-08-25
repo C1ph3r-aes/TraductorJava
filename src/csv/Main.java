@@ -5,6 +5,7 @@ import csv.gui.ListsUI;
 import csv.gui.SettingsUI;
 import csv.gui.StudyUI;
 import javafx.application.Application;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -19,6 +20,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+
+        SimpleBooleanProperty reloadListUI = new SimpleBooleanProperty();
 
         // Create the ReaderCSV object to extract the words and definitions from the CSV files
         ReaderCSV csvReader = new ReaderCSV();
@@ -45,7 +48,7 @@ public class Main extends Application {
         SettingsUI set = SettingsUI.create(listClass, index, intList);
         StudyUI stu = StudyUI.create(listClass, index, intList, set.resetUI());
         HeaderUI h = HeaderUI.create(primaryStage);
-        ListsUI l = ListsUI.create(csvReader, csvWriter, listClass);
+        ListsUI l = ListsUI.create(csvReader, csvWriter, listClass, reloadListUI);
 
         // Set the top and the default center of the BorderPane
         bp.setTop(h.rootNode());

@@ -1,5 +1,7 @@
 package csv;
 
+import javafx.beans.property.SimpleBooleanProperty;
+
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
@@ -43,7 +45,7 @@ public class List {
     }
     
 
-    public void importList(WriterCSV currentCsvWriter) {
+    public void importList(WriterCSV currentCsvWriter, SimpleBooleanProperty reloadListUI) {
         // open a window to let the user select the file he wants to
         // Create a JFrame
         JFrame frame = new JFrame("Select CSV File");
@@ -54,6 +56,7 @@ public class List {
         selectCsvFile(currentCsvWriter, this.PathToCsvFileAllListsPaths, frame);
 
         // refresh ListsUI
+        reloadListUI.setValue(true);
     }
 
     // shuffle the words and definitions
